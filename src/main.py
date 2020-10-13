@@ -1,4 +1,4 @@
-from src.vies_validator import ViesValidator
+from pyvieslib.src.vies_validator import ViesValidator
 
 
 class PyViesLib:

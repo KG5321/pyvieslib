@@ -208,17 +208,31 @@ class ViesValidator:
 
     def _fr_vies_check(self, vies_number: str) -> bool:
         print("fr")
-        exp = "^(\d{10})$"
-        r = re.search(exp, vies_number)
-        print(bool(r))
-        return bool(r)
+        exp1 = "^(\d{11})$"
+        exp2 = "^([A-HJ-NP-Z]\d{10})$"
+        exp3 = "^(\d[A-HJ-NP-Z]\d{9})$"
+        exp4 = "^([A-HJ-NP-Z]{2}\d{9})$"
+        r1 = re.search(exp1, vies_number)
+        r2 = re.search(exp2, vies_number)
+        r3 = re.search(exp3, vies_number)
+        r4 = re.search(exp4, vies_number)
+        if r1 or r2 or r3 or r4:
+            return True
+        return False
 
     def _gb_vies_check(self, vies_number: str) -> bool:
         print("gb")
-        exp = "^(\d{10})$"
-        r = re.search(exp, vies_number)
-        print(bool(r))
-        return bool(r)
+        exp1 = "^(\d{9})$"
+        exp2 = "^(\d{12})$"
+        exp3 = "^(GD\d{3})$"
+        exp4 = "^(HA\d{3})$"
+        r1 = bool(re.search(exp1, vies_number))
+        r2 = bool(re.search(exp2, vies_number))
+        r3 = bool(re.search(exp3, vies_number))
+        r4 = bool(re.search(exp4, vies_number))
+        if r1 or r2 or r3 or r4:
+            return True
+        return False
 
     def _hr_vies_check(self, vies_number: str) -> bool:
         print("hr")
@@ -236,13 +250,32 @@ class ViesValidator:
 
     def _ie_vies_check(self, vies_number: str) -> bool:
         print("ie")
-        exp = "^(\d{7}[A-W])$"
-        exp1 = "^([7-9][A-Z\*\+)]\d{5}[A-W])$"
-        exp2 = "^(\d{7}[A-W][AH])$"
-        r = bool(re.search(exp, vies_number))
+        check_sum = 0
+        exp1 = "^(\d{7}[A-W])$"
+        exp2 = "^([7-9][A-Z\*\+)]\d{5}[A-W])$"
+        exp3 = "^(\d{7}[A-W][AH])$"
         r1 = bool(re.search(exp1, vies_number))
         r2 = bool(re.search(exp2, vies_number))
-        if r or r1 or r2:
+        r3 = bool(re.search(exp3, vies_number))
+        if not (r1 or r2 or r3):
+            return False
+        weights = (8, 7, 6, 5, 4, 3, 2)
+        if re.search("^\d[A-Z\*\+]", vies_number):
+            vies_number = '0' + vies_number[2:7] + \
+                vies_number[0] + vies_number[7]
+        for i in range(0, 7):
+            check_sum += int(vies_number[i]) * weights[i]
+        if re.search("^\d{7}[A-Z][AH]$", vies_number):
+            if vies_number[8] == 'H':
+                check_sum += 72
+            else:
+                check_sum += 9
+        check_sum = check_sum % 23
+        if check_sum == 0:
+            check_sum = 'W'
+        else:
+            check_sum = chr(check_sum + 64)
+        if check_sum == vies_number[7]:
             return True
         return False
 
@@ -257,8 +290,17 @@ class ViesValidator:
         print("lv")
         exp = "^(\d{11})$"
         r = re.search(exp, vies_number)
-        print(bool(r))
-        return bool(r)
+        if not bool(r):
+            return False
+        if re.search("^[0-3]", vies_number):
+            if re.search("^[0-3][0-9][0-1][0-9]", vies_number):
+                return True
+            return False
+        else:
+            digits = [int(i) for i in vies_number]
+            weights = (9, 1, 4, 8, 3, 10, 2, 5, 7, 6)
+            check_sum = sum(d * w for d, w in zip(digits, weights))
+        return check_sum == digits[9]
 
     def _lt_vies_check(self, vies_number: str) -> bool:
         print("lt")
@@ -283,10 +325,13 @@ class ViesValidator:
 
     def _nl_vies_check(self, vies_number: str) -> bool:
         print("nl")
-        exp = "^(\d{10})$"
-        r = re.search(exp, vies_number)
-        print(bool(r))
-        return bool(r)
+        exp1 = "^(\d{9})$"
+        exp2 = "^(\d{12})$"
+        r1 = bool(re.search(exp1, vies_number))
+        r2 = bool(re.search(exp2, vies_number))
+        if r1 or r2:
+            return True
+        return False
 
     def _no_vies_check(self, vies_number: str) -> bool:
 

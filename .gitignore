@@ -128,3 +128,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 validation_test.py
+jsvat.js
