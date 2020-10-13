@@ -297,10 +297,24 @@ class ViesValidator:
                 return True
             return False
         else:
+            check_sum = 0
             digits = [int(i) for i in vies_number]
             weights = (9, 1, 4, 8, 3, 10, 2, 5, 7, 6)
-            check_sum = sum(d * w for d, w in zip(digits, weights))
-        return check_sum == digits[9]
+            
+            for i in range(0, 10):
+                check_sum += digits[i] * weights[i]
+            if (check_sum % 11 == 4) and (vies_number[0] == 9):
+                check_sum = check_sum - 45
+            if check_sum % 11 == 4:
+                check_sum = 4 - check_sum % 11
+            if check_sum % 11 > 4:
+                check_sum = 14 - check_sum % 11
+            if check_sum % 11 < 4:
+                check_sum = 3 - check_sum % 11
+            if check_sum == int(vies_number[10]):
+                return True
+            return False
+        return False
 
     def _lt_vies_check(self, vies_number: str) -> bool:
         print("lt")
