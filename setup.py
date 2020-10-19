@@ -12,7 +12,7 @@ setuptools.setup(
     author = 'KG5321',
     author_email = 'konradgebler1@gmail.com',
     url = 'https://github.com/KG5321/pyvieslib',   
-    download_url = 'https://github.com/KG5321/pyvieslib/archive/0.1.tar.gz',
+    download_url = 'https://github.com/KG5321/pyvieslib/archive/0.5.tar.gz',
     keywords = ['vies', 'nip', 'validation', 'eu', 'vat', 'number'],
     classifiers=[
         'Development Status :: 3 - Alpha',      
