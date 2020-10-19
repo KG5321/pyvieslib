@@ -48,32 +48,27 @@ class ViesValidator:
     def _at_vies_check(self, vies_number: str) -> bool:
         exp = "^U(\d{8})$"
         r = re.search(exp, vies_number)
-
         return bool(r)
 
     def _be_vies_check(self, vies_number: str) -> bool:
         exp = "^([0-1]\d{9})$"
         r = re.search(exp, vies_number)
-
         return bool(r)
 
     def _bg_vies_check(self, vies_number: str) -> bool:
         exp = "^(\d{9,10})$/)$"
         r = re.search(exp, vies_number)
-
         return bool(r)
 
     def _ch_vies_check(self, vies_number: str) -> bool:
 
         exp = "^(\d{9})(MWST|TVA|IVA)?$"
         r = re.search(exp, vies_number)
-
         return bool(r)
 
     def _cy_vies_check(self, vies_number: str) -> bool:
         exp = "^([0-59]\d{7}[A-Z])$"
         r = re.search(exp, vies_number)
-
         return bool(r)
 
     def _cz_vies_check(self, vies_number: str) -> bool:
