@@ -42,7 +42,10 @@ class ViesValidator:
         }
 
     def validate(self, country_code: str, vies_number: str) -> bool:
-        result = self.country_functions[country_code](vies_number)
+        try:
+            result = self.country_functions[country_code](vies_number)
+        except:
+            return False
         return result
 
     def _at_vies_check(self, vies_number: str) -> bool:
