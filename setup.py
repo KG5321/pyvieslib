@@ -20,7 +20,7 @@ setuptools.setup(
         'Development Status :: 3 - Alpha',      
         'Intended Audience :: Developers',
         'Topic :: Software Development',
-        'License :: MIT License',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.8'
     ]
 )
