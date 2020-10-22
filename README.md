@@ -4,7 +4,7 @@ PyVIESLib is a Python library for validating VIES numbers
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pyvieslib.
 
 ```bash
 pip install pyvieslib
