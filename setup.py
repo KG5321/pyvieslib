@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name = 'pyvieslib',
     packages = ['pyvieslib'],
-    version = '0.7',
+    version = '0.8.0',
     license='MIT',
     description = 'Library for VIES number validation',
     author = 'KG5321',
