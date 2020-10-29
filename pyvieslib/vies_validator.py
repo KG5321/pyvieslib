@@ -88,7 +88,7 @@ class ViesValidator:
         if re.search(cz_r0, vies_number):
             check_sum = 11 - sum(d * w for d, w in zip(digits, weights)) % 11
             if check_sum == 10:
-                check_sum = 10
+                check_sum = 0
             if check_sum == 11:
                 check_sum = 1
             return check_sum == digits[-1]
